@@ -29,14 +29,10 @@ from bot.core.handlers.big_rename import handle_big_rename
 async def rename_handler(c: Client, m: Message):
     # Checks
     if not m.from_user:
-        return await m.reply_text("I don't know about you sar :(")
+        return await m.reply_text("I don't know about you sir :(")
     if m.from_user.id not in Config.PRO_USERS:
         is_in_gap, sleep_time = await check_time_gap(m.from_user.id)
-        if is_in_gap:
-            await m.reply_text("Sorry Sir,\n"
-                               "No Flooding Allowed!\n\n"
-                               f"Send After `{str(sleep_time)}s` !!",
-                               quote=True)
+        if is_in_gap
             return
     await add_user_to_database(c, m)
     if (not m.reply_to_message) or (not m.reply_to_message.media) or (not get_file_attr(m.reply_to_message)):
