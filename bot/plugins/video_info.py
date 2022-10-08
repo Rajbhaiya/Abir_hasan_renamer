@@ -114,13 +114,6 @@ async def video_info_handler(c: Client, m: Message):
     except: pass
     upload_as_doc = await db.get_upload_as_doc(m.from_user.id)
     _default_thumb_ = await db.get_thumbnail(m.from_user.id)
-    if not _default_thumb_:
-        _m_attr = get_file_attr(m.reply_to_message)
-        _default_thumb_ = _m_attr.thumbs[0].file_id \
-            if (_m_attr and _m_attr.thumbs) \
-            else None
-    if _default_thumb_:
-        _default_thumb_ = await c.download_media(_default_thumb_, root_dl_loc)
     if (not upload_as_doc) and m.reply_to_message.video:
         await c.upload_video(
             chat_id=m.chat.id,
